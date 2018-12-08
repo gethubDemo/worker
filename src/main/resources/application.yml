@@ -1,0 +1,47 @@
+spring:
+  profiles:
+    active: pre
+  application:
+    name: worker
+  jpa:
+    hibernate:
+        #自动创建|更新|验证数据库表结构
+    ddl-auto: update
+    naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+       hibernate:
+          dialect: org.hibernate.dialect.MySQL5Dialect
+    show-sql: true
+server:
+  port: 9999
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql: TRACE
+      springframework:
+        boot:
+          autoconfigure: ERROR
+#日志采用debug模式
+debug: true
+
+
+---
+spring:
+    profiles: pre
+    datasource:
+      url: jdbc:mysql://localhost:3306/worker?characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=false
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
+
+
+
+
+
+
+
+
