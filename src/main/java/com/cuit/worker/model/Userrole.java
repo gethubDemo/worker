@@ -34,7 +34,7 @@ public class Userrole {
     }
 
     @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName = "id")
+    @JoinColumn(name = "userId", referencedColumnName = "id", nullable = false)
     public User getUserByUserId() {
         return userByUserId;
     }
@@ -44,7 +44,7 @@ public class Userrole {
     }
 
     @ManyToOne
-    @JoinColumn(name = "roleId", referencedColumnName = "id")
+    @JoinColumn(name = "roleId", referencedColumnName = "id", nullable = false)
     public Role getRoleByRoleId() {
         return roleByRoleId;
     }

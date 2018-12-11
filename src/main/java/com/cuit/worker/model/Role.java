@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Role {
     private int id;
     private String role;
-    private Integer code;
+    private int code;
 
     @Id
     @Column(name = "id")
@@ -34,11 +34,11 @@ public class Role {
 
     @Basic
     @Column(name = "code")
-    public Integer getCode() {
+    public int getCode() {
         return code;
     }
 
-    public void setCode(Integer code) {
+    public void setCode(int code) {
         this.code = code;
     }
 
@@ -48,8 +48,8 @@ public class Role {
         if (o == null || getClass() != o.getClass()) return false;
         Role role1 = (Role) o;
         return id == role1.id &&
-                Objects.equals(role, role1.role) &&
-                Objects.equals(code, role1.code);
+                code == role1.code &&
+                Objects.equals(role, role1.role);
     }
 
     @Override

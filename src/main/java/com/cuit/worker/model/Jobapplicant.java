@@ -1,0 +1,57 @@
+package com.cuit.worker.model;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.util.Objects;
+
+@Entity
+public class Jobapplicant {
+    private int id;
+    private Timestamp time;
+    private Job jobByJobId;
+
+    @Id
+    @Column(name = "id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Basic
+    @Column(name = "time")
+    public Timestamp getTime() {
+        return time;
+    }
+
+    public void setTime(Timestamp time) {
+        this.time = time;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Jobapplicant that = (Jobapplicant) o;
+        return id == that.id &&
+                Objects.equals(time, that.time);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, time);
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "jobId", referencedColumnName = "id", nullable = false)
+    public Job getJobByJobId() {
+        return jobByJobId;
+    }
+
+    public void setJobByJobId(Job jobByJobId) {
+        this.jobByJobId = jobByJobId;
+    }
+}

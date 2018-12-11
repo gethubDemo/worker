@@ -11,12 +11,12 @@ import java.util.Objects;
 public class User {
     private int id;
     private String username;
+    private String password;
     private Date birthday;
     private int sex;
     private String email;
     private String phone;
     private String address;
-    private String password;
 
     @Id
     @Column(name = "id")
@@ -36,6 +36,16 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Basic
+    @Column(name = "password")
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Basic
@@ -88,16 +98,6 @@ public class User {
         this.address = address;
     }
 
-    @Basic
-    @Column(name = "password")
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -106,16 +106,16 @@ public class User {
         return id == user.id &&
                 sex == user.sex &&
                 Objects.equals(username, user.username) &&
+                Objects.equals(password, user.password) &&
                 Objects.equals(birthday, user.birthday) &&
                 Objects.equals(email, user.email) &&
                 Objects.equals(phone, user.phone) &&
-                Objects.equals(address, user.address) &&
-                Objects.equals(password, user.password);
+                Objects.equals(address, user.address);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, username, birthday, sex, email, phone, address, password);
+        return Objects.hash(id, username, password, birthday, sex, email, phone, address);
     }
 }
