@@ -4,7 +4,6 @@ package com.cuit.worker.controller;
 import com.cuit.worker.model.Audience;
 import com.cuit.worker.model.Message;
 import com.cuit.worker.model.User;
-import com.cuit.worker.model.UserRole;
 import com.cuit.worker.service.UserRoleService;
 import com.cuit.worker.service.UserService;
 import com.cuit.worker.util.JwtHelper;
@@ -67,6 +66,7 @@ public class UserController {
             return ResponseEntity.ok(message);
         }
     }
+
 
 
 }
