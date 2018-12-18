@@ -19,7 +19,7 @@ import java.util.Date;
 public class RequestInterceptor implements HandlerInterceptor {
     private static Logger log=LoggerFactory.getLogger(RequestInterceptor.class);
     //存储不需要拦截的url
-    private static final String[] IGNORE_URI = {"/user/login"};
+    private static final String[] IGNORE_URI = {"/user/login","/user/register"};
     @Autowired
     private JwtHelper jwtHelper;
     @Autowired

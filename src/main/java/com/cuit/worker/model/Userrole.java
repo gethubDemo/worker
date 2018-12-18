@@ -6,8 +6,6 @@ import java.util.Objects;
 @Entity
 public class Userrole {
     private int id;
-    private int userId;
-    private int roleId;
     private User userByUserId;
     private Role roleByRoleId;
 
@@ -21,40 +19,18 @@ public class Userrole {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "userId")
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    @Basic
-    @Column(name = "roleId")
-    public int getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Userrole userrole = (Userrole) o;
-        return id == userrole.id &&
-                userId == userrole.userId &&
-                roleId == userrole.roleId;
+        return id == userrole.id;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, userId, roleId);
+        return Objects.hash(id);
     }
 
     @ManyToOne

@@ -1,9 +1,11 @@
 package com.cuit.worker.model;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.math.BigInteger;
 import java.sql.Timestamp;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -19,8 +21,6 @@ public class Job {
     private Timestamp endtime;
     private BigInteger salary;
     private Timestamp time;
-    private Collection<Jobapplicant> jobapplicantsById;
-    private Collection<Jobpublisher> jobpublishersById;
 
     @Id
     @Column(name = "id")
@@ -154,23 +154,5 @@ public class Job {
     public int hashCode() {
 
         return Objects.hash(id, title, company, discription, jobdemand, type, number, address, endtime, salary, time);
-    }
-
-    @OneToMany(mappedBy = "jobByJobId")
-    public Collection<Jobapplicant> getJobapplicantsById() {
-        return jobapplicantsById;
-    }
-
-    public void setJobapplicantsById(Collection<Jobapplicant> jobapplicantsById) {
-        this.jobapplicantsById = jobapplicantsById;
-    }
-
-    @OneToMany(mappedBy = "jobByJobId")
-    public Collection<Jobpublisher> getJobpublishersById() {
-        return jobpublishersById;
-    }
-
-    public void setJobpublishersById(Collection<Jobpublisher> jobpublishersById) {
-        this.jobpublishersById = jobpublishersById;
     }
 }

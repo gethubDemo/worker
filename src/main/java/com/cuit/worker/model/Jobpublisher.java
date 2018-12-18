@@ -7,8 +7,6 @@ import java.util.Objects;
 @Entity
 public class Jobpublisher {
     private int id;
-    private int userId;
-    private int jobId;
     private Timestamp time;
     private User userByUserId;
     private Job jobByJobId;
@@ -21,26 +19,6 @@ public class Jobpublisher {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Basic
-    @Column(name = "userId")
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    @Basic
-    @Column(name = "jobId")
-    public int getJobId() {
-        return jobId;
-    }
-
-    public void setJobId(int jobId) {
-        this.jobId = jobId;
     }
 
     @Basic
@@ -59,15 +37,13 @@ public class Jobpublisher {
         if (o == null || getClass() != o.getClass()) return false;
         Jobpublisher that = (Jobpublisher) o;
         return id == that.id &&
-                userId == that.userId &&
-                jobId == that.jobId &&
                 Objects.equals(time, that.time);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, userId, jobId, time);
+        return Objects.hash(id, time);
     }
 
     @ManyToOne
