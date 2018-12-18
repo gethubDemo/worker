@@ -1,9 +1,7 @@
 package com.cuit.worker.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -11,6 +9,7 @@ public class Role {
     private int id;
     private String role;
     private int code;
+    private Collection<Userrole> userrolesById;
 
     @Id
     @Column(name = "id")
@@ -56,5 +55,14 @@ public class Role {
     public int hashCode() {
 
         return Objects.hash(id, role, code);
+    }
+
+    @OneToMany(mappedBy = "roleByRoleId")
+    public Collection<Userrole> getUserrolesById() {
+        return userrolesById;
+    }
+
+    public void setUserrolesById(Collection<Userrole> userrolesById) {
+        this.userrolesById = userrolesById;
     }
 }

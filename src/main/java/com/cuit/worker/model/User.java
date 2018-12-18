@@ -1,10 +1,8 @@
 package com.cuit.worker.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -17,6 +15,11 @@ public class User {
     private String email;
     private String phone;
     private String address;
+    private String company;
+    private Collection<Jobapplicant> jobapplicantsById;
+    private Collection<Jobpublisher> jobpublishersById;
+    private Collection<Resume> resumesById;
+    private Collection<Userrole> userrolesById;
 
     @Id
     @Column(name = "id")
@@ -98,6 +101,16 @@ public class User {
         this.address = address;
     }
 
+    @Basic
+    @Column(name = "company")
+    public String getCompany() {
+        return company;
+    }
+
+    public void setCompany(String company) {
+        this.company = company;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -110,12 +123,49 @@ public class User {
                 Objects.equals(birthday, user.birthday) &&
                 Objects.equals(email, user.email) &&
                 Objects.equals(phone, user.phone) &&
-                Objects.equals(address, user.address);
+                Objects.equals(address, user.address) &&
+                Objects.equals(company, user.company);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, username, password, birthday, sex, email, phone, address);
+        return Objects.hash(id, username, password, birthday, sex, email, phone, address, company);
+    }
+
+    @OneToMany(mappedBy = "userByUserId")
+    public Collection<Jobapplicant> getJobapplicantsById() {
+        return jobapplicantsById;
+    }
+
+    public void setJobapplicantsById(Collection<Jobapplicant> jobapplicantsById) {
+        this.jobapplicantsById = jobapplicantsById;
+    }
+
+    @OneToMany(mappedBy = "userByUserId")
+    public Collection<Jobpublisher> getJobpublishersById() {
+        return jobpublishersById;
+    }
+
+    public void setJobpublishersById(Collection<Jobpublisher> jobpublishersById) {
+        this.jobpublishersById = jobpublishersById;
+    }
+
+    @OneToMany(mappedBy = "userByUserId")
+    public Collection<Resume> getResumesById() {
+        return resumesById;
+    }
+
+    public void setResumesById(Collection<Resume> resumesById) {
+        this.resumesById = resumesById;
+    }
+
+    @OneToMany(mappedBy = "userByUserId")
+    public Collection<Userrole> getUserrolesById() {
+        return userrolesById;
+    }
+
+    public void setUserrolesById(Collection<Userrole> userrolesById) {
+        this.userrolesById = userrolesById;
     }
 }

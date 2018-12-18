@@ -27,7 +27,10 @@ logging:
           autoconfigure: ERROR
 #日志采用debug模式
 debug: true
-
+audience:
+  base64Secret: MDk4ZjZiY2Q0NjIxZDM3M2NhZGU0ZTgzMjYyN2I0ZjY=
+  name: losuai
+  expireTime: 6000
 
 ---
 spring:
