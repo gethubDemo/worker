@@ -5,12 +5,15 @@ import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
-public class Jobapplicant {
+@Table(name = "job_applicant", schema = "worker", catalog = "")
+public class JobApplicant {
     private int id;
+    private int userId;
+    private int jobId;
     private Timestamp time;
     private Integer status;
-    private User userByUserId;
-    private Job jobByJobId;
+    private User tUserByUserId;
+    private Job tJobByJobId;
 
     @Id
     @Column(name = "id")
@@ -20,6 +23,26 @@ public class Jobapplicant {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Basic
+    @Column(name = "user_id",insertable = false,updatable = false)
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Basic
+    @Column(name = "job_id",insertable = false,updatable = false)
+    public int getJobId() {
+        return jobId;
+    }
+
+    public void setJobId(int jobId) {
+        this.jobId = jobId;
     }
 
     @Basic
@@ -46,8 +69,10 @@ public class Jobapplicant {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Jobapplicant that = (Jobapplicant) o;
+        JobApplicant that = (JobApplicant) o;
         return id == that.id &&
+                userId == that.userId &&
+                jobId == that.jobId &&
                 Objects.equals(time, that.time) &&
                 Objects.equals(status, that.status);
     }
@@ -55,26 +80,26 @@ public class Jobapplicant {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, time, status);
+        return Objects.hash(id, userId, jobId, time, status);
     }
 
     @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName = "id", nullable = false)
-    public User getUserByUserId() {
-        return userByUserId;
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    public User gettUserByUserId() {
+        return tUserByUserId;
     }
 
-    public void setUserByUserId(User userByUserId) {
-        this.userByUserId = userByUserId;
+    public void settUserByUserId(User tUserByUserId) {
+        this.tUserByUserId = tUserByUserId;
     }
 
     @ManyToOne
-    @JoinColumn(name = "jobId", referencedColumnName = "id", nullable = false)
-    public Job getJobByJobId() {
-        return jobByJobId;
+    @JoinColumn(name = "job_id", referencedColumnName = "id", nullable = false)
+    public Job gettJobByJobId() {
+        return tJobByJobId;
     }
 
-    public void setJobByJobId(Job jobByJobId) {
-        this.jobByJobId = jobByJobId;
+    public void settJobByJobId(Job tJobByJobId) {
+        this.tJobByJobId = tJobByJobId;
     }
 }

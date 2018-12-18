@@ -1,26 +1,27 @@
 package com.cuit.worker.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigInteger;
 import java.sql.Timestamp;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@Table(name = "t_job", schema = "worker", catalog = "")
 public class Job {
     private int id;
     private String title;
     private String company;
     private String discription;
-    private String jobdemand;
+    private String jobDemand;
     private String type;
     private Integer number;
     private String address;
     private Timestamp endtime;
     private BigInteger salary;
     private Timestamp time;
+    private Collection<JobApplicant> jobApplicantsById;
+    private Collection<JobPublisher> jobPublishersById;
 
     @Id
     @Column(name = "id")
@@ -63,13 +64,13 @@ public class Job {
     }
 
     @Basic
-    @Column(name = "jobdemand")
-    public String getJobdemand() {
-        return jobdemand;
+    @Column(name = "job_demand")
+    public String getJobDemand() {
+        return jobDemand;
     }
 
-    public void setJobdemand(String jobdemand) {
-        this.jobdemand = jobdemand;
+    public void setJobDemand(String jobDemand) {
+        this.jobDemand = jobDemand;
     }
 
     @Basic
@@ -141,7 +142,7 @@ public class Job {
                 Objects.equals(title, job.title) &&
                 Objects.equals(company, job.company) &&
                 Objects.equals(discription, job.discription) &&
-                Objects.equals(jobdemand, job.jobdemand) &&
+                Objects.equals(jobDemand, job.jobDemand) &&
                 Objects.equals(type, job.type) &&
                 Objects.equals(number, job.number) &&
                 Objects.equals(address, job.address) &&
@@ -153,6 +154,24 @@ public class Job {
     @Override
     public int hashCode() {
 
-        return Objects.hash(id, title, company, discription, jobdemand, type, number, address, endtime, salary, time);
+        return Objects.hash(id, title, company, discription, jobDemand, type, number, address, endtime, salary, time);
+    }
+
+    @OneToMany(mappedBy = "tJobByJobId")
+    public Collection<JobApplicant> getJobApplicantsById() {
+        return jobApplicantsById;
+    }
+
+    public void setJobApplicantsById(Collection<JobApplicant> jobApplicantsById) {
+        this.jobApplicantsById = jobApplicantsById;
+    }
+
+    @OneToMany(mappedBy = "tJobByJobId")
+    public Collection<JobPublisher> getJobPublishersById() {
+        return jobPublishersById;
+    }
+
+    public void setJobPublishersById(Collection<JobPublisher> jobPublishersById) {
+        this.jobPublishersById = jobPublishersById;
     }
 }

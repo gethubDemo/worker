@@ -4,6 +4,8 @@ package com.cuit.worker.controller;
 import com.cuit.worker.model.Audience;
 import com.cuit.worker.model.Message;
 import com.cuit.worker.model.User;
+import com.cuit.worker.model.UserRole;
+import com.cuit.worker.service.UserRoleService;
 import com.cuit.worker.service.UserService;
 import com.cuit.worker.util.JwtHelper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,23 +27,46 @@ public class UserController {
     @Autowired
     private Message message;
 
+    @Autowired
+    private UserRoleService userRoleService;
+
     @RequestMapping(value = "/user/register",method = RequestMethod.POST)
     public ResponseEntity UserRegister(@RequestBody User user){
         User existsUser = userService.findByUserName(user.getUsername());
         if (existsUser!= null){
             message.setCode(0);
             message.setMsg("该用户已存在");
-        }else userService.save(user);
+        }else {
+            userService.save(user);
+            message.setCode(1);
+            message.setMsg("注册成功");
+        }
         return ResponseEntity.ok(message);
     }
 
     @RequestMapping(value = "/user/login",method = RequestMethod.POST)
-    public ResponseEntity<Audience> Login(@RequestBody User user){
-            if (user.getUsername()!=null&&user.getPassword()!=null){
-                    audience.setToken(jwtHelper.CreateJWT(1));
-                    audience.setUserId(1);
-                    return ResponseEntity.ok(audience);
-            }
-            return null;
+    public ResponseEntity<Message> Login(@RequestBody User user){
+        User existsUser = userService.findByUserName(user.getUsername());
+        if (existsUser == null){
+            message.setCode(0);
+            message.setMsg("不存在这个用户");
+            return ResponseEntity.ok(message);
+        }else if (existsUser.getPassword().equals(user.getPassword())){
+            audience.setToken(jwtHelper.CreateJWT(existsUser.getId()));
+            audience.setUserId(existsUser.getId());
+            Integer roleId = existsUser.getUserRolesById().iterator().next().getRoleId();
+//            UserRole userRole = userRoleService.findByUserId(existsUser.getId());
+            audience.setRoleId(roleId);
+            message.setData(audience);
+            message.setCode(1);
+            message.setMsg("登录成功");
+            return ResponseEntity.ok(message);
+        }else {
+            message.setCode(0);
+            message.setMsg("密码错误");
+            return ResponseEntity.ok(message);
+        }
     }
+
+
 }

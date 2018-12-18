@@ -4,10 +4,13 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Userrole {
+@Table(name = "user_role", schema = "worker", catalog = "")
+public class UserRole {
     private int id;
-    private User userByUserId;
-    private Role roleByRoleId;
+    private int userId;
+    private int roleId;
+    private User tUserByUserId;
+    private Role tRoleByRoleId;
 
     @Id
     @Column(name = "id")
@@ -19,37 +22,59 @@ public class Userrole {
         this.id = id;
     }
 
+    @Basic
+    @Column(name = "user_id",insertable = false,updatable = false)
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Basic
+    @Column(name = "role_id",insertable = false,updatable = false)
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Userrole userrole = (Userrole) o;
-        return id == userrole.id;
+        UserRole userRole = (UserRole) o;
+        return id == userRole.id &&
+                userId == userRole.userId &&
+                roleId == userRole.roleId;
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(id);
+        return Objects.hash(id, userId, roleId);
     }
 
     @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName = "id", nullable = false)
-    public User getUserByUserId() {
-        return userByUserId;
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
+    public User gettUserByUserId() {
+        return tUserByUserId;
     }
 
-    public void setUserByUserId(User userByUserId) {
-        this.userByUserId = userByUserId;
+    public void settUserByUserId(User tUserByUserId) {
+        this.tUserByUserId = tUserByUserId;
     }
 
     @ManyToOne
-    @JoinColumn(name = "roleId", referencedColumnName = "id", nullable = false)
-    public Role getRoleByRoleId() {
-        return roleByRoleId;
+    @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
+    public Role gettRoleByRoleId() {
+        return tRoleByRoleId;
     }
 
-    public void setRoleByRoleId(Role roleByRoleId) {
-        this.roleByRoleId = roleByRoleId;
+    public void settRoleByRoleId(Role tRoleByRoleId) {
+        this.tRoleByRoleId = tRoleByRoleId;
     }
 }

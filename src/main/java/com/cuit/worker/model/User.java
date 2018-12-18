@@ -1,13 +1,12 @@
 package com.cuit.worker.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 import java.util.Objects;
 
 @Entity
+@Table(name = "t_user", schema = "worker", catalog = "")
 public class User {
     private int id;
     private String username;
@@ -18,6 +17,10 @@ public class User {
     private String phone;
     private String address;
     private String company;
+    private Collection<JobApplicant> jobApplicantsById;
+    private Collection<JobPublisher> jobPublishersById;
+    private Collection<Resume> tResumesById;
+    private Collection<UserRole> userRolesById;
 
     @Id
     @Column(name = "id")
@@ -129,5 +132,41 @@ public class User {
     public int hashCode() {
 
         return Objects.hash(id, username, password, birthday, sex, email, phone, address, company);
+    }
+
+    @OneToMany(mappedBy = "tUserByUserId")
+    public Collection<JobApplicant> getJobApplicantsById() {
+        return jobApplicantsById;
+    }
+
+    public void setJobApplicantsById(Collection<JobApplicant> jobApplicantsById) {
+        this.jobApplicantsById = jobApplicantsById;
+    }
+
+    @OneToMany(mappedBy = "tUserByUserId")
+    public Collection<JobPublisher> getJobPublishersById() {
+        return jobPublishersById;
+    }
+
+    public void setJobPublishersById(Collection<JobPublisher> jobPublishersById) {
+        this.jobPublishersById = jobPublishersById;
+    }
+
+    @OneToMany(mappedBy = "tUserByUserId")
+    public Collection<Resume> gettResumesById() {
+        return tResumesById;
+    }
+
+    public void settResumesById(Collection<Resume> tResumesById) {
+        this.tResumesById = tResumesById;
+    }
+
+    @OneToMany(mappedBy = "tUserByUserId")
+    public Collection<UserRole> getUserRolesById() {
+        return userRolesById;
+    }
+
+    public void setUserRolesById(Collection<UserRole> userRolesById) {
+        this.userRolesById = userRolesById;
     }
 }

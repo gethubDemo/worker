@@ -13,5 +13,5 @@ public class Audience {
     private int expireTime;
     private String token;
     private int userId;
-    private  int role;
+    private  int roleId;
 }
