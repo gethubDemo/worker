@@ -31,5 +31,5 @@ public class ResumeController {
         return ResponseEntity.ok(message);
     }
 
-    
+
 }
