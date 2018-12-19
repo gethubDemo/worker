@@ -9,4 +9,5 @@ public interface ResumeService {
     public void updateResume(Resume resume);
     public Optional<Resume> findResumeById(Integer id);
     public void deleteResumeById(Integer id);
+    public Resume findByUserId(Integer id);
 }

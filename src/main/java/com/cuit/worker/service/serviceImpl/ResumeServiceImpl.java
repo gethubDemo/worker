@@ -33,4 +33,9 @@ public class ResumeServiceImpl implements ResumeService {
     public void deleteResumeById(Integer id) {
         resumeRepository.deleteById(id);
     }
+
+    @Override
+    public Resume findByUserId(Integer id) {
+        return resumeRepository.findByUserId(id);
+    }
 }

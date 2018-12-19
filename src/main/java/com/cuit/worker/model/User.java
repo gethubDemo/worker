@@ -17,10 +17,10 @@ public class User {
     private String phone;
     private String address;
     private String company;
-    private Collection<Jobapplicant> jobApplicantsById;
-    private Collection<Jobpublisher> jobPublishersById;
-    private Collection<Resume> tResumesById;
-    private Collection<UserRole> userRolesById;
+//    private Collection<Jobapplicant> jobApplicantsById;
+//    private Collection<Jobpublisher> jobPublishersById;
+//    private Collection<Resume> tResumesById;
+//    private Collection<UserRole> userRolesById;
 
     @Id
     @Column(name = "id")
@@ -134,39 +134,39 @@ public class User {
         return Objects.hash(id, username, password, birthday, sex, email, phone, address, company);
     }
 
-    @OneToMany(mappedBy = "tUserByUserId")
-    public Collection<Jobapplicant> getJobApplicantsById() {
-        return jobApplicantsById;
-    }
+//    @OneToMany(mappedBy = "tUserByUserId")
+//    public Collection<Jobapplicant> getJobApplicantsById() {
+//        return jobApplicantsById;
+//    }
+//
+//    public void setJobApplicantsById(Collection<Jobapplicant> jobApplicantsById) {
+//        this.jobApplicantsById = jobApplicantsById;
+//    }
+//
+//    @OneToMany(mappedBy = "tUserByUserId")
+//    public Collection<Jobpublisher> getJobPublishersById() {
+//        return jobPublishersById;
+//    }
+//
+//    public void setJobPublishersById(Collection<Jobpublisher> jobPublishersById) {
+//        this.jobPublishersById = jobPublishersById;
+//    }
+//
+//    @OneToMany(mappedBy = "tUserByUserId")
+//    public Collection<Resume> gettResumesById() {
+//        return tResumesById;
+//    }
+//
+//    public void settResumesById(Collection<Resume> tResumesById) {
+//        this.tResumesById = tResumesById;
+//    }
+//
+//    @OneToMany(mappedBy = "tUserByUserId")
+//    public Collection<UserRole> getUserRolesById() {
+//        return userRolesById;
+//    }
 
-    public void setJobApplicantsById(Collection<Jobapplicant> jobApplicantsById) {
-        this.jobApplicantsById = jobApplicantsById;
-    }
-
-    @OneToMany(mappedBy = "tUserByUserId")
-    public Collection<Jobpublisher> getJobPublishersById() {
-        return jobPublishersById;
-    }
-
-    public void setJobPublishersById(Collection<Jobpublisher> jobPublishersById) {
-        this.jobPublishersById = jobPublishersById;
-    }
-
-    @OneToMany(mappedBy = "tUserByUserId")
-    public Collection<Resume> gettResumesById() {
-        return tResumesById;
-    }
-
-    public void settResumesById(Collection<Resume> tResumesById) {
-        this.tResumesById = tResumesById;
-    }
-
-    @OneToMany(mappedBy = "tUserByUserId")
-    public Collection<UserRole> getUserRolesById() {
-        return userRolesById;
-    }
-
-    public void setUserRolesById(Collection<UserRole> userRolesById) {
-        this.userRolesById = userRolesById;
-    }
+//    public void setUserRolesById(Collection<UserRole> userRolesById) {
+//        this.userRolesById = userRolesById;
+//    }
 }

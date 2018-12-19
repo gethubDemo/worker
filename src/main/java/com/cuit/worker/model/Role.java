@@ -10,7 +10,7 @@ public class Role {
     private int id;
     private String role;
     private int code;
-    private Collection<UserRole> userRolesById;
+//    private Collection<UserRole> userRolesById;
 
     @Id
     @Column(name = "id")
@@ -58,12 +58,12 @@ public class Role {
         return Objects.hash(id, role, code);
     }
 
-    @OneToMany(mappedBy = "tRoleByRoleId")
-    public Collection<UserRole> getUserRolesById() {
-        return userRolesById;
-    }
-
-    public void setUserRolesById(Collection<UserRole> userRolesById) {
-        this.userRolesById = userRolesById;
-    }
+//    @OneToMany(mappedBy = "tRoleByRoleId")
+//    public Collection<UserRole> getUserRolesById() {
+//        return userRolesById;
+//    }
+//
+//    public void setUserRolesById(Collection<UserRole> userRolesById) {
+//        this.userRolesById = userRolesById;
+//    }
 }

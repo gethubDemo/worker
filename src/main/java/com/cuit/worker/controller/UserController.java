@@ -4,6 +4,7 @@ package com.cuit.worker.controller;
 import com.cuit.worker.model.Audience;
 import com.cuit.worker.model.Message;
 import com.cuit.worker.model.User;
+import com.cuit.worker.model.UserRole;
 import com.cuit.worker.service.UserRoleService;
 import com.cuit.worker.service.UserService;
 import com.cuit.worker.util.JwtHelper;
@@ -53,9 +54,8 @@ public class UserController {
         }else if (existsUser.getPassword().equals(user.getPassword())){
             audience.setToken(jwtHelper.CreateJWT(existsUser.getId()));
             audience.setUserId(existsUser.getId());
-            Integer roleId = existsUser.getUserRolesById().iterator().next().getRoleId();
-//            UserRole userRole = userRoleService.findByUserId(existsUser.getId());
-            audience.setRoleId(roleId);
+            UserRole userRole = userRoleService.findByUserId(existsUser.getId());
+            audience.setRoleId(userRole.getRoleId());
             message.setData(audience);
             message.setCode(1);
             message.setMsg("登录成功");
@@ -67,6 +67,26 @@ public class UserController {
         }
     }
 
-
-
+    @RequestMapping(value = "/user/update",method = RequestMethod.POST)
+    public ResponseEntity updateUser(@RequestBody User user){
+        User existsUser = userService.findById(user.getId()).get();
+        Message message = new Message();
+        existsUser.setUsername(user.getUsername());
+        existsUser.setPassword(user.getPassword());
+        existsUser.setAddress(user.getAddress());
+        existsUser.setBirthday(user.getBirthday());
+        existsUser.setCompany(user.getCompany());
+        existsUser.setEmail(user.getEmail());
+        existsUser.setPhone(user.getPhone());
+        existsUser.setSex(user.getSex());
+        try {
+            userService.update(existsUser);
+        }catch (Exception e){
+            message.setMsg("更新用户失败");
+            message.setCode(0);
+        }
+        message.setCode(1);
+        message.setMsg("更新用户成功");
+        return ResponseEntity.ok(message);
+    }
 }
