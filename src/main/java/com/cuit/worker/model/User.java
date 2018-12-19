@@ -17,8 +17,8 @@ public class User {
     private String phone;
     private String address;
     private String company;
-    private Collection<JobApplicant> jobApplicantsById;
-    private Collection<JobPublisher> jobPublishersById;
+    private Collection<Jobapplicant> jobApplicantsById;
+    private Collection<Jobpublisher> jobPublishersById;
     private Collection<Resume> tResumesById;
     private Collection<UserRole> userRolesById;
 
@@ -135,20 +135,20 @@ public class User {
     }
 
     @OneToMany(mappedBy = "tUserByUserId")
-    public Collection<JobApplicant> getJobApplicantsById() {
+    public Collection<Jobapplicant> getJobApplicantsById() {
         return jobApplicantsById;
     }
 
-    public void setJobApplicantsById(Collection<JobApplicant> jobApplicantsById) {
+    public void setJobApplicantsById(Collection<Jobapplicant> jobApplicantsById) {
         this.jobApplicantsById = jobApplicantsById;
     }
 
     @OneToMany(mappedBy = "tUserByUserId")
-    public Collection<JobPublisher> getJobPublishersById() {
+    public Collection<Jobpublisher> getJobPublishersById() {
         return jobPublishersById;
     }
 
-    public void setJobPublishersById(Collection<JobPublisher> jobPublishersById) {
+    public void setJobPublishersById(Collection<Jobpublisher> jobPublishersById) {
         this.jobPublishersById = jobPublishersById;
     }
 
