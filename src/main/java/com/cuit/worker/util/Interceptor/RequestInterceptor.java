@@ -48,6 +48,7 @@ public class RequestInterceptor implements HandlerInterceptor {
                         message.setMsg("Token过期");
                         JSONObject object = (JSONObject) JSONObject.toJSON(message);
                         returnJson(response,object);
+                        flag = false;
                     } else {
                         log.info("Token 验证成功");
                         flag = true;
@@ -58,12 +59,14 @@ public class RequestInterceptor implements HandlerInterceptor {
                     message.setMsg("Token不存在");
                     JSONObject object = (JSONObject) JSONObject.toJSON(message);
                     returnJson(response,object);
+                    flag = false;
                 }
             }catch (Exception e){
                 message.setMsg("无Token");
                 message.setCode(2);
                 JSONObject object = (JSONObject) JSONObject.toJSON(message);
                 returnJson(response,object);
+                flag = false;
             }
         }
         return flag;
