@@ -1,8 +1,8 @@
 package com.cuit.worker.service;
 
 
-import com.cuit.worker.model.UserRole;
+import com.cuit.worker.model.Userrole;
 
 public interface UserRoleService {
-    public UserRole findByUserId(Integer id);
+    public Userrole findByUserId(Integer id);
 }

@@ -10,7 +10,7 @@ public class Role {
     private int id;
     private String role;
     private int code;
-    private Collection<UserRole> userRolesById;
+    private Collection<Userrole> userRolesById;
 
     @Id
     @Column(name = "id")
@@ -59,11 +59,11 @@ public class Role {
     }
 
     @OneToMany(mappedBy = "tRoleByRoleId")
-    public Collection<UserRole> getUserRolesById() {
+    public Collection<Userrole> getUserRolesById() {
         return userRolesById;
     }
 
-    public void setUserRolesById(Collection<UserRole> userRolesById) {
+    public void setUserRolesById(Collection<Userrole> userRolesById) {
         this.userRolesById = userRolesById;
     }
 }

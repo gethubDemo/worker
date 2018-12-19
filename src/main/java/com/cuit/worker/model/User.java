@@ -20,7 +20,7 @@ public class User {
     private Collection<Jobapplicant> jobApplicantsById;
     private Collection<Jobpublisher> jobPublishersById;
     private Collection<Resume> tResumesById;
-    private Collection<UserRole> userRolesById;
+    private Collection<Userrole> userRolesById;
 
     @Id
     @Column(name = "id")
@@ -162,11 +162,11 @@ public class User {
     }
 
     @OneToMany(mappedBy = "tUserByUserId")
-    public Collection<UserRole> getUserRolesById() {
+    public Collection<Userrole> getUserRolesById() {
         return userRolesById;
     }
 
-    public void setUserRolesById(Collection<UserRole> userRolesById) {
+    public void setUserRolesById(Collection<Userrole> userRolesById) {
         this.userRolesById = userRolesById;
     }
 }

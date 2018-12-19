@@ -54,7 +54,7 @@ public class UserController {
             audience.setToken(jwtHelper.CreateJWT(existsUser.getId()));
             audience.setUserId(existsUser.getId());
             Integer roleId = existsUser.getUserRolesById().iterator().next().getRoleId();
-//            UserRole userRole = userRoleService.findByUserId(existsUser.getId());
+//            Userrole userRole = userRoleService.findByUserId(existsUser.getId());
             audience.setRoleId(roleId);
             message.setData(audience);
             message.setCode(1);
