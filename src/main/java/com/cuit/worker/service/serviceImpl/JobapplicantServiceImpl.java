@@ -39,4 +39,19 @@ public class JobapplicantServiceImpl implements JobapplicantService {
     public void delete(Jobapplicant jobapplicant) {
         jobapplicantRepository.delete(jobapplicant);
     }
+
+    @Override
+    public List<Jobapplicant> findByJobId(Integer id){
+        return jobapplicantRepository.findByJobId(id);
+    }
+
+    @Override
+    public List<Jobapplicant> findByUserIdAndJobId(Integer userId, Integer jobId) {
+        return jobapplicantRepository.findByUserIdAndJobId(userId,jobId);
+    }
+
+    @Override
+    public void deleteByJobId(Integer jobId) {
+        jobapplicantRepository.deleteByJobId(jobId);
+    }
 }

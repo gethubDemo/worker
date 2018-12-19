@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: shurui
+    active: ljw
   application:
     name: worker
   jpa:
@@ -49,6 +49,15 @@ spring:
         username: root
         password: 190437
         driver-class-name: com.mysql.jdbc.Driver
+
+---
+spring:
+  profiles: ljw
+  datasource:
+    url: jdbc:mysql://localhost:3306/worker?characterEncoding=utf-8&serverTimezone=GMT%2B8&useSSL=false
+    username: root
+    password: 111111
+    driver-class-name: com.mysql.jdbc.Driver
 
 
 

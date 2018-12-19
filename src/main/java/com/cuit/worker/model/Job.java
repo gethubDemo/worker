@@ -20,8 +20,8 @@ public class Job {
     private Timestamp endtime;
     private BigInteger salary;
     private Timestamp time;
-    private Collection<Jobapplicant> jobApplicantsById;
-    private Collection<Jobpublisher> jobPublishersById;
+//    private Collection<Jobapplicant> jobApplicantsById;
+//    private Collection<Jobpublisher> jobPublishersById;
 
     @Id
     @Column(name = "id")
@@ -157,21 +157,21 @@ public class Job {
         return Objects.hash(id, title, company, discription, jobDemand, type, number, address, endtime, salary, time);
     }
 
-    @OneToMany(mappedBy = "tJobByJobId")
-    public Collection<Jobapplicant> getJobApplicantsById() {
-        return jobApplicantsById;
-    }
-
-    public void setJobApplicantsById(Collection<Jobapplicant> jobApplicantsById) {
-        this.jobApplicantsById = jobApplicantsById;
-    }
-
-    @OneToMany(mappedBy = "tJobByJobId")
-    public Collection<Jobpublisher> getJobPublishersById() {
-        return jobPublishersById;
-    }
-
-    public void setJobPublishersById(Collection<Jobpublisher> jobPublishersById) {
-        this.jobPublishersById = jobPublishersById;
-    }
+//    @OneToMany(mappedBy = "tJobByJobId")
+//    public Collection<Jobapplicant> getJobApplicantsById() {
+//        return jobApplicantsById;
+//    }
+//
+//    public void setJobApplicantsById(Collection<Jobapplicant> jobApplicantsById) {
+//        this.jobApplicantsById = jobApplicantsById;
+//    }
+//
+//    @OneToMany(mappedBy = "tJobByJobId")
+//    public Collection<Jobpublisher> getJobPublishersById() {
+//        return jobPublishersById;
+//    }
+//
+//    public void setJobPublishersById(Collection<Jobpublisher> jobPublishersById) {
+//        this.jobPublishersById = jobPublishersById;
+//    }
 }

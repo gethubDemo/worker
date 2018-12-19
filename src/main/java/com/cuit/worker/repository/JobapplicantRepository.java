@@ -3,6 +3,7 @@ package com.cuit.worker.repository;
 import com.cuit.worker.model.Jobapplicant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,4 +24,11 @@ public interface JobapplicantRepository extends JpaRepository<Jobapplicant,Integ
 
     @Override
     void delete(Jobapplicant jobapplicant);
+
+    List<Jobapplicant> findByJobId(Integer jobId);
+
+    List<Jobapplicant> findByUserIdAndJobId(Integer userId,Integer jobId);
+
+    @Transactional
+    void deleteByJobId(Integer jobId);
 }
