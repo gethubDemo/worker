@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "job_publisher", schema = "worker", catalog = "")
-public class JobPublisher {
+public class Jobpublisher {
     private int id;
     private int userId;
     private int jobId;
@@ -58,7 +58,7 @@ public class JobPublisher {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        JobPublisher that = (JobPublisher) o;
+        Jobpublisher that = (Jobpublisher) o;
         return id == that.id &&
                 userId == that.userId &&
                 jobId == that.jobId &&

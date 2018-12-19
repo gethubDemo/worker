@@ -20,8 +20,8 @@ public class Job {
     private Timestamp endtime;
     private BigInteger salary;
     private Timestamp time;
-    private Collection<JobApplicant> jobApplicantsById;
-    private Collection<JobPublisher> jobPublishersById;
+    private Collection<Jobapplicant> jobApplicantsById;
+    private Collection<Jobpublisher> jobPublishersById;
 
     @Id
     @Column(name = "id")
@@ -158,20 +158,20 @@ public class Job {
     }
 
     @OneToMany(mappedBy = "tJobByJobId")
-    public Collection<JobApplicant> getJobApplicantsById() {
+    public Collection<Jobapplicant> getJobApplicantsById() {
         return jobApplicantsById;
     }
 
-    public void setJobApplicantsById(Collection<JobApplicant> jobApplicantsById) {
+    public void setJobApplicantsById(Collection<Jobapplicant> jobApplicantsById) {
         this.jobApplicantsById = jobApplicantsById;
     }
 
     @OneToMany(mappedBy = "tJobByJobId")
-    public Collection<JobPublisher> getJobPublishersById() {
+    public Collection<Jobpublisher> getJobPublishersById() {
         return jobPublishersById;
     }
 
-    public void setJobPublishersById(Collection<JobPublisher> jobPublishersById) {
+    public void setJobPublishersById(Collection<Jobpublisher> jobPublishersById) {
         this.jobPublishersById = jobPublishersById;
     }
 }
