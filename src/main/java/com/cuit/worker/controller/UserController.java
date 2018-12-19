@@ -23,8 +23,6 @@ public class UserController {
     @Autowired
     private Audience audience;
 
-    @Autowired
-    private Message message;
 
     @Autowired
     private UserRoleService userRoleService;
@@ -32,6 +30,7 @@ public class UserController {
     @RequestMapping(value = "/user/register",method = RequestMethod.POST)
     public ResponseEntity UserRegister(@RequestBody User user){
         User existsUser = userService.findByUserName(user.getUsername());
+        Message message = new Message();
         if (existsUser!= null){
             message.setCode(0);
             message.setMsg("该用户已存在");
@@ -46,6 +45,7 @@ public class UserController {
     @RequestMapping(value = "/user/login",method = RequestMethod.POST)
     public ResponseEntity<Message> Login(@RequestBody User user){
         User existsUser = userService.findByUserName(user.getUsername());
+        Message message = new Message();
         if (existsUser == null){
             message.setCode(0);
             message.setMsg("不存在这个用户");
