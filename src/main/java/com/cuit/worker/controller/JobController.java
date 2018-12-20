@@ -6,13 +6,11 @@ import com.cuit.worker.service.JobapplicantService;
 import com.cuit.worker.service.JobpublisherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Id;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -22,8 +20,6 @@ public class JobController {
 
     @Autowired
     private   JobService jobService;
-
-
     @Autowired
     private JobpublisherService jobpublisherService;
 
@@ -75,10 +71,17 @@ public ResponseEntity<Message> findAllJob(int page){
         message.setCode(1);
         return ResponseEntity.ok(message);
     }
-    @RequestMapping(value = "/jobQuery",method = RequestMethod.GET)
+    @RequestMapping(value = "/job/query",method = RequestMethod.GET)
     public ResponseEntity<Optional<Job>> findJob(@RequestParam Integer id){
         Optional<Job> job = jobService.findByJobId(id);
         return ResponseEntity.ok(job);
+    }
+    @RequestMapping(value = "/job/query/title",method = RequestMethod.GET)
+    public ResponseEntity<Message> findJob(@RequestParam String title){
+        List<Job> jobs = jobService.findAllByTitle(title);
+        Message message = new Message();
+        message.setData(jobs);
+        return ResponseEntity.ok(message);
     }
 
     @RequestMapping(value = "/creatJob",method = RequestMethod.POST)

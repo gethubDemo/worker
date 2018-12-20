@@ -57,4 +57,9 @@ public class JobServiceImpl implements JobService {
         jobRepository.deleteById(id);
     }
 
+    @Override
+    public List<Job> findAllByTitle(String title) {
+        return jobRepository.findAllTitle(title);
+    }
+
 }

@@ -4,12 +4,15 @@ package com.cuit.worker.controller;
 import com.cuit.worker.model.Audience;
 import com.cuit.worker.model.Message;
 import com.cuit.worker.model.User;
+import com.cuit.worker.model.Userrole;
 import com.cuit.worker.service.UserRoleService;
 import com.cuit.worker.service.UserService;
 import com.cuit.worker.util.JwtHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Iterator;
 
 
 @RestController
@@ -53,9 +56,9 @@ public class UserController {
         }else if (existsUser.getPassword().equals(user.getPassword())){
             audience.setToken(jwtHelper.CreateJWT(existsUser.getId()));
             audience.setUserId(existsUser.getId());
-            Integer roleId = existsUser.getUserRolesById().iterator().next().getRoleId();
-//            Userrole userRole = userRoleService.findByUserId(existsUser.getId());
-            audience.setRoleId(roleId);
+            //Integer roleId = existsUser.getUserRolesById().iterator().next().getRoleId();
+          Userrole userRole = userRoleService.findByUserId(existsUser.getId());
+            audience.setRoleId(userRole.getId());
             message.setData(audience);
             message.setCode(1);
             message.setMsg("登录成功");

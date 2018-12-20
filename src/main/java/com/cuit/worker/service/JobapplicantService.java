@@ -11,4 +11,10 @@ public interface JobapplicantService {
     public void  save(Jobapplicant jobapplicant);
     public void update(Jobapplicant jobapplicant);
     public void delete(Jobapplicant jobapplicant);
+
+    public List<Jobapplicant> findByJobId(Integer jobId);
+
+    public List<Jobapplicant> findByUserIdAndJobId(Integer userId,Integer jobId);
+
+    public  void deleteByJobId(Integer jobId);
 }
