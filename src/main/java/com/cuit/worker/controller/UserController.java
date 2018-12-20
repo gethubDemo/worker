@@ -89,4 +89,21 @@ public class UserController {
         message.setMsg("更新用户成功");
         return ResponseEntity.ok(message);
     }
+
+
+    @RequestMapping(value = "/user/findById",method = RequestMethod.GET)
+    public ResponseEntity UserFindById(Integer id){
+        Message message = new Message();
+        try {
+            message.setData( userService.findById(id).get());
+            message.setCode(1);
+
+        }catch (Exception e){
+            message.setMsg("find User Error");
+            message.setCode(0);
+        }
+
+        return ResponseEntity.ok(message);
+    }
+
 }

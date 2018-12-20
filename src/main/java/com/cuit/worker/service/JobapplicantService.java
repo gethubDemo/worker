@@ -17,4 +17,6 @@ public interface JobapplicantService {
     public List<Jobapplicant> findByUserIdAndJobId(Integer userId, Integer jobId);
 
     public  void deleteByJobId(Integer jobId);
+
+    public  List<Jobapplicant> findByUserId(Integer userId);
 }

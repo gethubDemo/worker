@@ -29,4 +29,14 @@ public class JobpublisherImpl implements JobpublisherService {
     public void deleteByJobId(Integer jobId) {
         jobpublisherRepository.deleteByJobId(jobId);
     }
+
+    @Override
+    public Jobpublisher findByJobId(Integer jobId) {
+        return jobpublisherRepository.findByJobId(jobId);
+    }
+
+    @Override
+    public void creatPublisher(Jobpublisher jobpublisher) {
+        jobpublisherRepository.save(jobpublisher);
+    }
 }

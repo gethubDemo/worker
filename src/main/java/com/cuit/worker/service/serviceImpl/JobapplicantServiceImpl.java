@@ -54,4 +54,9 @@ public class JobapplicantServiceImpl implements JobapplicantService {
     public void deleteByJobId(Integer jobId) {
         jobapplicantRepository.deleteByJobId(jobId);
     }
+
+    @Override
+    public List<Jobapplicant> findByUserId(Integer userId) {
+        return jobapplicantRepository.findByUserId(userId);
+    }
 }

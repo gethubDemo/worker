@@ -17,5 +17,7 @@ public interface JobpublisherRepository extends JpaRepository<Jobpublisher,Integ
         @Transactional
         void deleteByJobId(Integer jobId);
 
+        Jobpublisher findByJobId(Integer jobId);
+
 }
 

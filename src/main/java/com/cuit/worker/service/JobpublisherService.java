@@ -13,4 +13,7 @@ public interface JobpublisherService {
     public List<Jobpublisher> findByUserId(int id);
 
     public   void deleteByJobId(Integer jobId);
+    public  Jobpublisher findByJobId(Integer jobId);
+
+    public void creatPublisher(Jobpublisher jobpublisher);
 }

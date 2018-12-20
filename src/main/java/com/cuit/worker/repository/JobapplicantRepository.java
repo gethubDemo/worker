@@ -29,6 +29,8 @@ public interface JobapplicantRepository extends JpaRepository<Jobapplicant,Integ
 
     List<Jobapplicant> findByUserIdAndJobId(Integer userId, Integer jobId);
 
+    List<Jobapplicant> findByUserId(Integer userId);
+
     @Transactional
     void deleteByJobId(Integer jobId);
 }
