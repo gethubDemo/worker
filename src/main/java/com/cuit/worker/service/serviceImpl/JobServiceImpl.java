@@ -57,4 +57,9 @@ public class JobServiceImpl implements JobService {
         jobRepository.deleteById(id);
     }
 
+    @Override
+    public List<Job> findByTitleIsLike(String title) {
+        return jobRepository.findByTitleIsLike(title);
+    }
+
 }

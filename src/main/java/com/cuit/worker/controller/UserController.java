@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
+
     @Autowired
     private UserService userService;
 
@@ -24,9 +25,9 @@ public class UserController {
     @Autowired
     private Audience audience;
 
-
     @Autowired
     private UserRoleService userRoleService;
+
 
     @RequestMapping(value = "/user/register",method = RequestMethod.POST)
     public ResponseEntity UserRegister(@RequestBody User user){
@@ -44,7 +45,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/user/login",method = RequestMethod.POST)
-    public ResponseEntity<Message> Login(@RequestBody User user){
+    public ResponseEntity<Message> Login(@RequestBody User user,@RequestParam("id") Integer id){
         User existsUser = userService.findByUserName(user.getUsername());
         Message message = new Message();
         if (existsUser == null){

@@ -3,7 +3,9 @@ package com.cuit.worker.repository;
 import com.cuit.worker.model.Job;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,7 +31,6 @@ public interface JobRepository extends JpaRepository<Job,Integer> {
     @Override
     Page<Job> findAll(Pageable pageable);
 
-
-
-
+    @Query(value = "select s from Job as s where s.title like concat('%',?1,'%')")
+    List<Job>  findByTitleIsLike(String title);
 }

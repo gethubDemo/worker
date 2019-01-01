@@ -18,4 +18,5 @@ public interface JobService {
     public Job creatJob(Job job);
     public Job updateJob(Job job);
     public void deleteJob(int id);
+    public  List<Job>  findByTitleIsLike(String title);
 }
